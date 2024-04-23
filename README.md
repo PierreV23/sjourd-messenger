@@ -1,2 +1,2 @@
 # sjourd-messenger
-messenger api at messenger.sjourd.com
+WIP messenger app
