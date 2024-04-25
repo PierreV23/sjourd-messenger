@@ -25,7 +25,7 @@ impl Modify for SecurityAddon {
             components.add_security_scheme(
                 "api_key",
                 SecurityScheme::ApiKey(ApiKey::Header(ApiKeyValue::new("x-api-key"))),
-            )
+            );
         }
     }
 }
