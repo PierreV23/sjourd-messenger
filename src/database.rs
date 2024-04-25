@@ -14,7 +14,7 @@ pub async fn create_tables(pool: &Pool<Postgres>) -> Result<(), sqlx::Error> {
         .await?;
     sqlx::query(
         "CREATE TABLE IF NOT EXISTS \"user\" (
-            id INTEGER PRIMARY KEY,
+            user_id SERIAL PRIMARY KEY,
             name TEXT UNIQUE NOT NULL,
             nickname TEXT,
             bio TEXT,

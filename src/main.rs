@@ -1,11 +1,10 @@
 use docs::ApiDoc;
-use serde::{Deserialize, Serialize};
 use sqlx::{postgres::PgPoolOptions, Pool, Postgres};
 use std::sync::{Arc, RwLock};
 use utoipa::OpenApi;
 use utoipa_rapidoc::RapiDoc;
 
-use axum::{routing::get, Json, Router};
+use axum::{routing::get, Router};
 pub mod api;
 pub mod database;
 pub mod docs;
@@ -13,16 +12,7 @@ pub mod docs;
 #[derive(Clone)]
 pub struct AppState {
     pub string: Arc<RwLock<String>>,
-    pub pool: Arc<RwLock<Pool<Postgres>>>,
-}
-
-#[derive(Debug, Serialize, Deserialize, sqlx::Type)]
-#[sqlx(type_name = "user_status")]
-pub enum Status {
-    Online,
-    Offline,
-    Away,
-    DoNotDisturb,
+    pub pool: Pool<Postgres>,
 }
 
 #[tokio::main]
@@ -47,7 +37,7 @@ async fn main() {
 
     let state = AppState {
         string: Arc::new(RwLock::new(String::from("hey"))),
-        pool: Arc::new(RwLock::new(pool)),
+        pool,
     };
     let app = Router::<AppState>::new()
         .route("/", get(|| async { "Hello, World!" }))
