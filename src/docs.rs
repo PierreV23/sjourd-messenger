@@ -7,7 +7,8 @@ use utoipa::{
 #[openapi(
     paths(
         // openapi,
-        crate::api::ping::ping
+        crate::api::ping::ping,
+        crate::api::user::create::create_user
     ),
     tags(
         (name = "Misc", description = "Miscellaneous"),

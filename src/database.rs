@@ -18,7 +18,7 @@ pub async fn create_tables(pool: &Pool<Postgres>) -> Result<(), sqlx::Error> {
             name TEXT UNIQUE NOT NULL,
             nickname TEXT,
             bio TEXT,
-            status user_status NOT NULL
+            status user_status NOT NULL DEFAULT 'Offline'
         )",
     )
     .execute(pool)
