@@ -15,3 +15,7 @@ sqlx = { version = "0.7.4", features = ["postgres", "runtime-tokio"] }
 tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
 utoipa = { version = "4.2.0", features = ["axum_extras"] }
 utoipa-rapidoc = { version = "3.0.0", features = ["axum"] }
+
+
+[build-dependencies]
+dotenv = "0.15.0"
