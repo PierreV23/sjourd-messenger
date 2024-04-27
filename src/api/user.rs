@@ -3,6 +3,7 @@ use axum::{
     http::StatusCode,
     response::{IntoResponse, Response},
 };
+use axum::{routing::post, Router};
 use serde::{Deserialize, Serialize};
 use sqlx::Row;
 use utoipa::IntoParams;
@@ -75,4 +76,8 @@ pub struct User {
     nickname: Option<String>,
     bio: Option<String>,
     status: Status,
+}
+
+pub fn router() -> Router<crate::AppState> {
+    Router::new().route("/create", post(create_user))
 }
